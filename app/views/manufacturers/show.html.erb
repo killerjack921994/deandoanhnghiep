@@ -1,0 +1,65 @@
+<% provide(:title,  t('.showmanufacturer'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+			<div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.showmanufacturer')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.list'), manufacturers_path %></li>
+							<li><%= link_to t('.listmanufacturer') , manufacturers_path %></li>
+							<li><%= t('.showmanufacturer')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+				<div class="panel panel-flat">
+					<div class="panel-heading">
+						<h1 class="panel-title"><%= t('.showmanufacturer')%></h1>
+					</div>
+                    <div class="panel-body">
+                                            
+                    <p>
+                      <strong><%= t('.name')%></strong>
+                      <%= @manufacturer.name %>
+                    </p>
+                    
+                    <p>
+                      <strong><%= t('.address')%></strong>
+                      <%= @manufacturer.address %>
+                    </p>
+                    
+                    <p>
+                      <strong><%= t('.phone')%></strong>
+                      <%= @manufacturer.phone %>
+                    </p>
+                    
+                    <p>
+                      <strong><%= t('.fax')%></strong>
+                      <%= @manufacturer.fax %>
+                    </p>
+
+                        <div class="text-right">
+                            <%= link_to  t('.edit'), edit_manufacturer_path(@manufacturer), class:"custombutton" %>
+                            <%= link_to  t('.back'), manufacturers_path, class:"custombutton" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+    </div>
+</div>
+<%= javascript_include_tag 'uniform.min.js' %>
+<%= javascript_include_tag 'form_layouts.js' %>
+<%= javascript_include_tag 'select2.min.js' %>

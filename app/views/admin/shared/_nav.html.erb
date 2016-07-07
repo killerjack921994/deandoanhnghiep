@@ -1,0 +1,45 @@
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<%= link_to image_tag("logo_light.png", alt: "logo"), admin_path , class:"navbar-brand"%>
+			<ul class="nav navbar-nav pull-right visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li>
+					<a class="sidebar-control sidebar-main-toggle hidden-xs">
+						<i class="icon-paragraph-justify3"></i>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown language-switch">
+					<% if I18n.locale == I18n.default_locale %>
+						<%= link_to image_tag("gb.png", alt: "logo", class: "position-left") + t('.locale') + ' <em class="carets"></em>'.html_safe, admin_path, class:"dropdown-toggle", data: {toggle: "dropdown"}%>
+					<% else %>
+						<%= link_to image_tag("vn.png", alt: "logo", class: "position-left") + t('.locale') + ' <em class="carets"></em>'.html_safe, admin_path, class:"dropdown-toggle", data: {toggle: "dropdown"}%>
+					<% end %>
+					<ul class="dropdown-menu">
+						<li><%= link_to image_tag("gb.png", alt: "logo") + t('.elocale'), locale: :en %></li>
+						<li><%= link_to image_tag("vn.png", alt: "logo") + t('.vlocale'), locale: :vn %></li>
+					</ul>
+				</li>
+				
+				<li class="dropdown dropdown-user">
+						<%= link_to image_tag("logo_admin.png", alt: "logo")+"<span>".html_safe+current_staff.name+"</span> <em class='carets'></em>".html_safe, admin_path, class: "dropdown-toggle", data: {toggle: "dropdown"} %>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><%= link_to '<i class="icon-user-plus"></i>'.html_safe + t('.profile'), staff_path(current_staff.id) %></li>
+						<li class="divider"></li>
+						<li><%= link_to '<i class="icon-exit3"></i>'.html_safe + t('.out'), logout_path, method: "delete" %></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->

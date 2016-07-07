@@ -1,0 +1,64 @@
+<div class="sidebar-content">
+    <!-- User menu -->
+    <div class="sidebar-user">
+        <div class="category-content">
+            <div class="media">
+                <%= link_to image_tag("logo_admin.png", alt: "logo", class: "img-circle img-sm"), admin_path , class:"media-left" %>
+                <div class="media-body">
+                    <span class="media-heading text-semibold"><%= current_staff.name %></span>
+                    <div class="text-size-mini text-muted">
+                        <i class="icon-pin text-size-small"></i><%= current_staff.address %>
+                    </div>
+                </div>
+
+                <div class="media-right media-middle">
+                    <ul class="icons-list">
+                        <li>
+                            <%= link_to '<i class="icon-cog3"></i>'.html_safe, edit_staff_path(current_staff.id)%>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /user menu -->
+
+
+    <!-- Main navigation -->
+    <div class="sidebar-category sidebar-category-visible">
+        <div class="category-content no-padding">
+            <ul class="navigation navigation-main navigation-accordion">
+                <!-- Main -->
+                <li class="navigation-header"><span><%= t('.title') %></span> <i class="icon-menu" title="Main pages"></i>
+                </li>
+                <li><%= link_to "<i class='icon-home4'></i><span>".html_safe+t('.dashboard') + "</span>".html_safe, admin_path %>
+                </li>
+                <li>
+                    <%= link_to "<i class='icon-stack2'></i><span>".html_safe+t('.list') + "</span>".html_safe, admin_path %>
+                    <ul>
+                        <li><%= active_link_to t('.listcategories'), categories_path, :wrap_tag => :li %></li>
+                        <li><%= active_link_to t('.listbooks'), books_path, :wrap_tag => :li %></li>
+                        <li><%= active_link_to t('.listauthors'), authors_path, :wrap_tag => :li %></li>
+                        <li><%= active_link_to t('.listmanufacturers'), manufacturers_path, :wrap_tag => :li %></li>
+                    </ul>
+                </li>
+                <li>
+                    <%= link_to "<i class='icon-file-text'></i><span>".html_safe + t('.order') + "</span>".html_safe, orders_path %>
+                </li>
+                <li>
+                    <%= link_to "<i class='icon-pen6'></i><span>".html_safe+t('.comment') + "</span>".html_safe, comments_path %>
+                </li>
+                <li>
+                    <%= link_to "<i class='icon-profile'></i><span>".html_safe+t('.information') + "</span>".html_safe, admin_path %>
+                    <ul>
+                        <li><%= active_link_to t('.informationstaffs'), staffs_path, :wrap_tag => :li %></li>
+                    </ul>
+                </li>
+                
+                <!-- /main -->
+            </ul>
+        </div>
+    </div>
+    <!-- /main navigation -->
+
+</div>

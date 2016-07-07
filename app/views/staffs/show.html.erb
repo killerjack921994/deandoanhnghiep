@@ -1,0 +1,87 @@
+<% provide(:title, t('.showstaff'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+			
+			<div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.showstaff')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.infomation').html_safe, staffs_path %></li>
+							<li><%= link_to t('.liststaff'), staffs_path %></li>
+							<li><%= t('.showstaff')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+				<div class="panel panel-flat">
+					<div class="panel-heading">
+						<h1 class="panel-title"><%= t('.showstaff')%></h1>
+					</div>
+                    <div class="panel-body">
+							<p>
+                              <strong><%= t('.name')%></strong>
+                              <%= @staff.name %>
+                            </p>
+                            
+                            <p>
+                              <strong><%= t('.birthday')%></strong>
+                              <%= @staff.birthday.strftime('%d/%m/%Y') %>
+                            </p>
+                            
+                            <p>
+                              <strong><%= t('.gender')%></strong>
+                              <%= @staff.gender %>
+                            </p>
+                            
+                            <p>
+                              <strong><%= t('.phone')%></strong>
+                              <%= @staff.phone %>
+                            </p>
+                            
+                            <p>
+                              <strong><%= t('.address')%></strong>
+                              <%= @staff.address %>
+                            </p>
+                            
+                            <p>
+                              <strong><%= t('.email')%></strong>
+                              <%= @staff.email %>
+                            </p>
+							<p>
+                              <strong><%= t('.authority')%></strong>
+                              <% if @staff.admin %>
+									<span>Admin</span>
+								<% else %>
+									<span>Staff</span>
+								<% end %>
+                            </p>
+                        <div class="clearfix"></div>    
+                        <div class="text-right">
+                            <%= link_to t('.edit'), edit_staff_path(@staff), class:"custombutton" %>
+                            <%= link_to t('.back'), staffs_path, class:"custombutton" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </div>
+</div>
+<%= javascript_include_tag 'uniform.min.js' %>
+<%= javascript_include_tag 'form_layouts.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+
+<%= javascript_include_tag 'components_thumbnails.js' %>
+<%= javascript_include_tag 'fancybox.min.js' %>
+<%= javascript_include_tag 'switchery.min.js' %>

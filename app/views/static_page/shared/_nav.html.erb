@@ -1,0 +1,35 @@
+<ul class="nav navbar-nav navbar-right">
+	<li class="menu"><%= link_to t('.home'), root_path %></li>
+    <li class="dropdown language-switch menu">
+		<% if I18n.locale == I18n.default_locale %>
+			<%= link_to image_tag("gb.png", alt: "logo", class: "position-left") + t('.locale') +'<em class="carets"></em>'.html_safe, admin_path, class:"dropdown-toggle", data: {toggle: "dropdown"}%>
+		<% else %>
+			<%= link_to image_tag("vn.png", alt: "logo", class: "position-left") + t('.locale') +'<em class="carets"></em>'.html_safe, admin_path, class:"dropdown-toggle", data: {toggle: "dropdown"}%>
+		<% end %>
+		<ul class="dropdown-menu">
+			<li><%= link_to image_tag("gb.png", alt: "logo") + t('.elocale'), locale: :en %></li>
+			<li><%= link_to image_tag("vn.png", alt: "logo") + t('.vlocale'), locale: :vn %></li>
+		</ul>
+	</li>
+    <li class="dropdown dropdown-user menu">
+        <% if logged_in? %>
+            <%= link_to image_tag("logo_admin.png", alt: "logo")+"<span>".html_safe+current_staff.name+" </span> <em class='carets'></em>".html_safe, admin_path, class: "dropdown-toggle", data: {toggle: "dropdown"} %>
+        <% else %>
+            <%= link_to "<span>".html_safe + t('.user') + "</span> <em class='carets'></em>".html_safe, admin_path, class: "dropdown-toggle", data: {toggle: "dropdown"} %>
+        <% end %>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li>
+                <%= link_to '<i class="icon-user-plus"></i>'.html_safe + t('.resign'), resign_path %>
+            </li>
+            <% if logged_in? %>
+                <li>
+                    <%= link_to '<i class="icon-exit3"></i>'.html_safe + t('.logout'), logout_path, method: "delete" %>
+                </li>
+            <% else %>
+                <li>
+					<%= link_to '<i class="icon-enter"></i>'.html_safe + t('.login'), login_path %>
+				</li>
+            <% end %>
+        </ul>
+    </li>
+</ul>

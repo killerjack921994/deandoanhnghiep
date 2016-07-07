@@ -1,0 +1,69 @@
+<%= form_for(@staff) do |f| %>
+  <% if @staff.errors.any? %>
+    <div class="error_explanation">
+      <ul>
+      <% @staff.errors.full_messages.each do |message| %>
+        <div class="alert alert-warning alert-bordered">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+          <span class="text-semibold">Warning! </span><%= message %>
+        </div>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <legend class="text-semibold"><h5><%= t('.titleaccount')%></h5></legend>
+	<div class="field required">
+    <%= f.label :user, t('.user') %><br>
+    <%= f.text_field :user, class:"form-control", placeholder: t(".inputuser") %>
+  </div>
+	<div class="field required">
+    <%= f.label :email, t('.email') %><br>
+    <%= f.email_field :email, class:"form-control", placeholder: t(".inputemail") %>
+		<span class="help-block"><%= t(".emailhelp") %></span>
+  </div>
+	<div class="field required">
+    <%= f.label :password, t('.password') %><br>
+    <%= f.password_field :password, class:"form-control", placeholder: t(".inputpassword") %>
+  </div>
+  <div class="field required">
+    <%= f.label :password_confirmation, t('.passwordconfirmation') %><br>
+    <%= f.password_field :password_confirmation, class:"form-control", placeholder: t(".inputre-password") %>
+  </div>
+	<% if current_staff.admin? %>
+		<div class="field">
+			<%= f.label :admin, t('.admin') %>
+			<%= f.check_box :admin, { class: "styled" } , 'true', 'false' %>
+		</div>
+	<% else %>
+	<% end %>
+	
+	<legend class="text-semibold"><h5><%= t('.titlepersonal')%></h5></legend>
+  <div class="field required">
+    <%= f.label :name, t('.name') %><br>
+    <%= f.text_field :name, class:"form-control", placeholder: t(".inputname") %>
+  </div>
+ <div class="field required">
+    <%= f.label :birthday, t('.birthday') %><br>
+    <%= f.text_field :birthday, class:"form-control", id:"anytime-month-numeric", placeholder:"dd/mm/yyyy"%>
+  </div>
+  <div class="field">
+    <%= f.label :gender, t('.gender') %><br>
+		<%= f.label :gender_male,  t('.male'), class:"radio-inline" %>
+    <%= f.radio_button :gender, 'Nam', class:"styled", :checked => true %>
+    <%= f.label :gender_female,  t('.female'), class:"radio-inline" %>
+    <%= f.radio_button :gender, 'Nữ', class:"styled" %><br />
+  </div>
+  <div class="field">
+    <%= f.label :phone, t('.phone') %><br>
+    <%= f.text_field :phone, :maxlength => 12, class:"form-control", placeholder:"+99-99-9999-9999", onkeypress: 'return event.charCode >= 48 && event.charCode <= 57' %>
+  </div>
+  <div class="field">
+    <%= f.label :address, t('.address') %><br>
+    <%= f.text_area :address, class:"form-control", placeholder: t(".inputaddress") %>
+  </div>
+  <div class="actions text-right">
+    <%= f.submit nil, :class => 'custombutton'%>
+		 <%= link_to t('.back'), staffs_path, class:"custombutton" %>
+  </div>
+<% end %>

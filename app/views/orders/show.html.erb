@@ -1,0 +1,94 @@
+<% provide(:title,  t('.showorder'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+            <div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.showorder')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.order'), orders_path %></li>
+							<li><%= link_to t('.listorder') , orders_path %></li>
+							<li><%= t('.showorder')%></li>
+						</ul>
+					</div>
+            </div>
+            <div class="content">
+              <div class="panel panel-flat">
+                  <div class="panel-heading">
+                    <h1 class="panel-title"><%= t('.showorder')%></h1>
+                  </div>
+                    <div class="panel-body">
+                        <div class="order-detail">
+							<div>
+								<strong><%= t('.name') %></strong>
+								<%= @order.name %>
+							</div>
+							<div>
+								<strong><%= t('.date') %></strong>
+								<%= @order.created_at.strftime('%H:%M, %d/%m/%Y') %>
+							</div>
+							<div>
+								<strong><%= t('.method') %></strong>
+								<%= @order.method %>
+							</div>
+							<div>
+								<strong><%= t('.payment') %></strong>
+								<%= @order.payment %>
+							</div>
+							<div>
+								<strong><%= t('.process') %></strong>
+								<%= @order.process %>
+							</div>
+							<div class="list-book">
+								<p><%= t('.list-book') %></p>
+								<table cellspacing="0" class="table-order">
+									<thead>
+										<th><%= t('.stt') %></th>
+										<th><%= t('.book-name') %></th>
+										<th><%= t('.price') %></th>
+									</thead>
+									<% @stt = 1 %>
+									<% @total = 0 %>
+									<% @order.book.each do |book| %>
+									<tbody>
+										<th><%= @stt %></th>
+										<th><%= book.name %></th>
+										<th><%= number_to_currency(book.price) %></th>
+									</tbody>
+									<% @stt += 1 %>
+									<% @total += book.price %>
+									<% end %>
+									<tbody>
+										<th colspan="3" style="text-align: right;"><%= t('.total') %><%= number_to_currency(@total) %></th>
+									</tbody>
+								</table>
+							</div>
+							<div class="text-right">
+								<%= link_to t('.edit'), edit_order_path(@order), class:"custombutton" %>
+								<%= link_to t('.back'), orders_path, class:"custombutton" %>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+</div>
+    </div>
+</div>
+<%= javascript_include_tag 'uniform.min.js' %>
+<%= javascript_include_tag 'form_layouts.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+
+<%= javascript_include_tag 'components_thumbnails.js' %>
+<%= javascript_include_tag 'fancybox.min.js' %>
+<%= javascript_include_tag 'switchery.min.js' %>

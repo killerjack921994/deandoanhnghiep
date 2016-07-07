@@ -1,0 +1,150 @@
+<% provide(:title, t('.listorder'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+            <div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.listorder')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.order'), orders_path %></li>
+							<li><%= t('.listorder')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+  <% flash.each do |message_type, message| %>
+					<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<% end %>
+<div class="panel panel-flat">
+        <div class="panel-heading">
+            <h1 class="panel-title"><%= t('.listorder')%></h1>
+            <% if current_staff.admin %>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><%= link_to t('.addnew'), new_order_path, class:"custombutton" %></li>
+                </ul>
+            </div>
+            <% else %>
+			<% end %>
+        </div>
+		<!--Đã chỉnh sửa-->
+							<div class="filter-box">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_method_orders_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:method, t('.method')) %></br>
+												<%= select_tag :method, options_for_select([t('.search'), "Borrow", "Buy"]), { class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_payment_orders_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:payment, t('.payment')) %></br>
+												<%= select_tag :payment, options_for_select([t('.search'), "Card", "Cash"]), { class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_process_orders_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:process, t('.process')) %></br>
+												<%= select_tag :process, options_for_select([t('.search'), "Pending", "Complete"]), { class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_owner_orders_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:id, t('.owner')) %></br>
+												<%= select_tag :id, options_from_collection_for_select(Staff.all, "id", "name"), {:prompt => t('.search-owner'), class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--Đã chỉnh sửa-->	
+  <table class="table datatable-basic table-hover">
+  <thead>
+    <tr>
+      <th><%= t('.name')%></th>
+      <th><%= t('.method')%></th>
+	  <th><%= t('.payment')%></th>
+	  <th><%= t('.process')%></th>
+	  <th><%= t('.total') %></th>
+	  <th><%= t('.owner')%></th>
+      <th class="text-center"><%= t('.action')%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        	<% if current_staff.admin %>
+							<td><%= link_to order.name, edit_order_path(order)%></td>
+						<% else %>
+							<td><%=  order.name %></td>
+						<% end %>
+        <td><%= order.method %></td>
+		<td><%= order.payment %></td>
+		<td><%= order.process %></td>
+		<% if order.book.empty? %>
+			<td></td>
+		<% else %>
+			<% @total = 0 %>
+			<% order.book.each do |book| %>
+				<% @total += book.price %>
+			<% end %>
+			<td><%= number_to_currency(@total) %></td>
+		<% end %>
+		<% if order.staff_id.nil? %>
+			<td></td>
+		<% else %>
+			<td><%= order.staff.name %></td>
+		<% end %>
+         <td class="text-center">
+						<% if current_staff.admin %>
+							<ul class="icons-list">
+                <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="icon-menu9"></i>
+                </a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li><%= link_to t('.show'), order %></li>
+                        <li><%= link_to t('.edit'), edit_order_path(order) %></li>
+                        <li><%= link_to t('.destroy'), order, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                      </ul>
+                  </li>
+              </ul>
+						<% else %>
+						<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+           <!-- /basic datatable -->
+</div>
+        </div>
+    </div>
+</div>
+<%= javascript_include_tag 'datatables.min.js' %>
+<%= javascript_include_tag 'datatables_basic_orders.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+<%= javascript_include_tag 'bootbox.min.js' %>
+<%= javascript_include_tag 'sweet_alert.min.js' %>
+<%= javascript_include_tag 'components_modals.js' %>
+<%= javascript_include_tag 'custom-delete.js' %>

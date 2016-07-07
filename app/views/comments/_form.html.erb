@@ -1,0 +1,39 @@
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="error_explanation">
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <div class="alert alert-warning alert-bordered">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+          <span class="text-semibold">Warning! </span><%= message %>
+        </div>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field required">
+    <%= f.label :name, t('.name') %><br>
+    <% if @comment.name.nil? %>
+      <%= f.text_field :name, class:"form-control", placeholder: t(".inputname"), value: current_staff.name %>
+    <% else %>
+      <%= f.text_field :name, class:"form-control", placeholder: t(".inputname"), value: @comment.name %>
+    <% end %>
+  </div>
+  <div class="field required">
+    <%= f.label :comment, t('.ndcomment') %><br>
+    <%= f.text_area :comment, class:"form-control", placeholder: t(".inputcomment") %>
+  </div>
+  <div class="field">
+      <%= f.label :book_id %><br>
+      <%= f.select :book_id, Book.all.collect { |book| [book.name, book.id] }, {}, { class: 'select' } %>
+  </div>
+  <% if @comment.staff_id.nil? %>
+    <%= f.hidden_field :staff_id, value: current_staff.id %>
+  <% else %>
+  <% end %>
+  <div class="actions text-right">
+    <%= f.submit nil, :class => 'custombutton' %>
+    <%= link_to  t('.back'), comments_path, class:"custombutton"  %>
+  </div>
+<% end %>

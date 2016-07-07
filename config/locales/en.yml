@@ -1,0 +1,688 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  custom:
+    delete_book_lineitem:
+      book-lineitem: "Book in cart has successfully deleted."
+    delete_order_book:
+      book-order: "Book has successfully deleted."
+    delete_book_category:
+      book-category: "Category has successfully deleted."
+  order-cart: "Your cart is empty."
+  book-category: "At least has one Category."
+  order-book: "At least has one Book."
+  hello: "Hello world"
+  helpers:
+    submit:
+      category:
+        create: "Create"
+        update: "Update"
+      book:
+        create: "Create"
+        update: "Update"
+      author:
+        create: "Create"
+        update: "Update"
+      manufacturer:
+        create: "Create"
+        update: "Update"
+      order:
+        create: "Create"
+        update: "Update"
+      staff:
+        create: "Create"
+        update: "Update"
+      customer:
+        create: "Create"
+        update: "Update"
+      comment:
+        create: "Create"
+        update: "Update"
+        
+  layouts:
+    application:
+      subtitle: "Book Online"
+  
+  comments:
+    index:
+      listcomment: "List Comments"
+      dashboard: "Dashboard"
+      comment: "Comments"
+      addnew: "New Comments"
+      book-name: "Book"
+      search-name: "Search by name ... "
+      search-book-name: "Select book"
+      search-owner: "Select owner"
+      name: "Name"
+      ndcomment: "Comment"
+      book: "Book"
+      staff: "Owner"
+      user: "User"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      listcomment: "List Comments"
+      dashboard: "Dashboard"
+      comment: "Comments"
+      newcomment: "New Comments"
+    edit:
+      listcomment: "List Comments"
+      dashboard: "Dashboard"
+      comment: "Comments"
+      editcomment: "Edit Customers"
+    show:
+      listcomment: "List Comments"
+      dashboard: "Dashboard"
+      comment: "Comments"
+      showcomment: "Show Comments"
+      name: "Name:"
+      ndcomment: "Comment:"
+      user: "User:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      name: "Name"
+      ndcomment: "Comment"
+      inputname: "Input name"
+      inputcomment: "Input content comment"
+      user: "User"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      comment-create: "Comment was successfully created."
+    update:
+      comment-update: "Comment was successfully updated."
+    destroy:
+      comment-destroy: "Comment was successfully destroyed."
+      
+  customers:
+    index:
+      listcustomer: "List Customers"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      addnew: "New Customers"
+      name: "Name"
+      birthday: "Birthday"
+      gender: "Gender"
+      phone: "Phone"
+      address: "Address"
+      email: "Email"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      listcustomer: "List Customers"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      newcustomer: "New Customers"
+    edit:
+      listcustomer: "List Customers"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      editcustomer: "Edit Customers"
+    show:
+      listcustomer: "List Customers"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      showcustomer: "Show Customers"
+      name: "Name:"
+      birthday: "Birthday:"
+      gender: "Gender:"
+      phone: "Phone:"
+      address: "Address:"
+      email: "Email:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      name: "Name"
+      birthday: "Birthday"
+      gender: "Gender"
+      male: "Male"
+      female: "Female"
+      address: "Address"
+      phone: "Phone"
+      back: "Back"
+      corfirm: "Confirm"
+  carts:
+    cart:
+      youcart: "Your Cart"
+      name: "Name"
+      quality: "Quality"
+      price: "Price"
+      action: "Delete"
+      total: "Total"
+      checkout: "Checkout"
+      title: "Delete Cart"
+      content: "Are you sure ???"
+      close: "Close"
+      empty: "Empty cart"
+    destroy:
+      cart-destroy: "Cart was successfully destroyed."
+   
+  static_page:
+    order_detail:
+      back: "Back"
+      total: "Total : "
+      price: "Price"
+      name: "Name"
+      stt: "STT"
+      list-book: "List Book"
+      payment: "Payment : "
+      method: "Method : "
+      date: "Date Order : "
+      name-order: "ID Order : "
+      detail: "Detail of your order : "
+      thankyou: "Thank you for your order"
+    comment_book:
+      comment-error: "Missing name or content in Comment."
+      comment-success: "Comment was successfully created."
+    find_book:
+      find: "Find"
+      addcart: "Add to Cart"
+      sale: "Sales price:"
+      bookdetails: "BOOK DETAILS"
+      findname: "Not found book has name:"
+    order:
+      neworder: "New Order"
+      name: "ID"
+      listbook: "List of book"
+      quality: "Quality"
+      price: "Price"
+      stt: "STT"
+      total: "Total:"
+      method: "Method"
+      pay: "Payment"
+      back: "Back"
+      order-login: "You must be login first."
+    book_details:
+      back: "Back : "
+      category: "Category:"
+      author: "Author:"
+      manufacturer: "Manufacturer:"
+      addcart: "Add to Cart"
+      sale: "Sales price:"
+      description: "Description"
+      comments: "Comments"
+      addcomments: "Add comment"
+      send: "Send"
+    shared:
+      nav:
+        home: "HOME"
+        resign: "Resign"
+        logout: "Log out"
+        login: "Log in"
+        locale: "English"
+        elocale: "English"
+        vlocale: "Vietnamese"
+        user: "User"
+      sidebar:
+        allcategory: "All category"
+        findbook: "Find book"
+    list_category:
+      bookdetails: "BOOK DETAILS"
+      addcart: "Add to Cart"
+      sale: "Sales price:"
+    home:
+      tabnewbook: "News Book"
+      tabbestsell: "Best Selling"
+      bookdetails: "BOOK DETAILS"
+      addcart: "Add to Cart"
+      sale: "Sales price:"
+    resign:
+      newstaff: "New Staffs"
+      titleaccount: "Account information"
+      user: "User"
+      email: "Email"
+      pass: "Password"
+      passwordconfirmation: "Password Confirmation"
+      titlepersonal: "Personal information"
+      name: "Name"
+      birthday: "Birthday"
+      gender: "Gender"
+      male: "Male"
+      female: "Female"
+      address: "Address:"
+      phone: "Phone"
+      authority: "Authority"
+      inputuser: "Input user"
+      inputemail: "Input email"
+      emailhelp: "Accepted formats: example@gmail.com"
+      inputpassword: "Input password"
+      inputre-password: "Repeat password"
+      inputname: "Input name"
+      inputaddress: "Input address"
+      back: "Back"
+      corfirm: "Confirm"
+    create_resign:
+      resign-create: "Staff was successfully created."
+    create_order:
+      order-create: "Order was successfully created."
+      
+  staffs:
+    index:
+      liststaff: "List Staffs"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      addnew: "New Staffs"
+      search-name: "Search by name ... "
+      search-email: "Search by email ... "
+      name: "Name"
+      birthday: "Birthday"
+      gender: "Gender"
+      phone: "Phone"
+      email: "Email"
+      authority: "Authority"
+      address: "Address"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      liststaff: "List Staffs"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      newstaff: "New Staffs"
+    edit:
+      liststaff: "List Staffs"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      editstaff: "Edit Staffs"
+    show:
+      liststaff: "List Staffs"
+      dashboard: "Dashboard"
+      infomation: "Infomation"
+      showstaff: "Show Staffs"
+      name: "Name:"
+      birthday: "Birthday:"
+      gender: "Gender:"
+      phone: "Phone:"
+      email: "Email:"
+      authority: "Authority:"
+      address: "Address:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      titleaccount: "Account information"
+      user: "User"
+      email: "Email"
+      pass: "Password"
+      passwordconfirmation: "Password Confirmation"
+      admin: "Change Into Admin"
+      titlepersonal: "Personal information"
+      name: "Name"
+      birthday: "Birthday"
+      gender: "Gender"
+      male: "Male"
+      female: "Female"
+      address: "Address:"
+      phone: "Phone"
+      authority: "Authority"
+      inputuser: "Input user"
+      inputemail: "Input email"
+      emailhelp: "Accepted formats: example@gmail.com"
+      inputpassword: "Input password"
+      inputre-password: "Input repeat password"
+      inputname: "Input name"
+      inputaddress: "Input address"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      staff-create: "Staff was successfully created."
+    update:
+      staff-update: "Staff was successfully updated."
+    destroy:
+      staff-destroy: "Staff was successfully destroyed."
+      
+  orders:
+    index:
+      listorder: "List Orders"
+      dashboard: "Dashboard"
+      order: "Order"
+      addnew: "New Orders"
+      search: "Select"
+      search-owner: "Select onwer"
+      name: "ID"
+      email: "Email"
+      method: "Method"
+      payment: "Payment"
+      process: "Process"
+      total: "Total"
+      owner: "Owner"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      listorder: "List Orders"
+      dashboard: "Dashboard"
+      order: "Order"
+      neworder: "New Orders"
+    edit:
+      listorder: "List Orders"
+      dashboard: "Dashboard"
+      order: "Order"
+      editorder: "Edit Orders"
+    show:
+      listorder: "List Orders"
+      dashboard: "Dashboard"
+      order: "Order"
+      showorder: "Show Orders"
+      name: "ID:"
+      date: "Date:"
+      method: "Method:"
+      payment: "Payment:"
+      process: "Process:"
+      list-book: "List Book"
+      stt: "STT"
+      book-name: "Name"
+      price: "Price"
+      total: "Total:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      name: "Name"
+      list-book: "List Book"
+      books: "Book"
+      book: "Pleace choose book ..."
+      book-name: "Book Name"
+      book-price: "Book Price"
+      book-action: "Delete"
+      method: "Method"
+      payment: "Payment"
+      process: "Process"
+      staff: "Owner"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      order-create: "Order was successfully created."
+    update:
+      order-update: "Order was successfully updated."
+    destroy:
+      order-destroy: "Order was successfully destroyed."
+      
+  manufacturers:
+    index:
+      listmanufacturer: "List Manufacturers"
+      dashboard: "Dashboard"
+      list: "List"
+      addnew: "New Manufacturers"
+      search-name: "Search by name ... "
+      name: "Name"
+      address: "Address"
+      phone: "Phone"
+      fax: "Fax"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      listmanufacturer: "List Manufacturers"
+      dashboard: "Dashboard"
+      list: "List"
+      newmanufacturer: "New Manufacturers"
+    edit:
+      listmanufacturer: "List Manufacturers"
+      dashboard: "Dashboard"
+      list: "List"
+      editmanufacturer: "Edit Manufacturers"
+    show:
+      listmanufacturer: "List Manufacturers"
+      dashboard: "Dashboard"
+      list: "List"
+      showmanufacturer: "Show Manufacturers"
+      name: "Name:"
+      address: "Address:"
+      phone: "Phone:"
+      fax: "Fax:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      name: "Name"
+      address: "Address"
+      phone: "Phone"
+      fax: "Fax"
+      inputname: "Input name"
+      inputaddress: "Input address"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      manufacturer-create: "Manufacturer was successfully created."
+    update:
+      manufacturer-update: "Manufacturer was successfully updated."
+    destroy:
+      manufacturer-destroy: "Manufacturer was successfully destroyed."
+      
+  authors:
+    index:
+      listauthor: "List Authors"
+      dashboard: "Dashboard"
+      list: "List"
+      addnew: "New Authors"
+      search-name: "Search by name ... "
+      name: "Name"
+      birthday: "Birthday"
+      homeland: "Country"
+      description: "Description"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+      close: "Close"
+      title: "Delete Author"
+      content: "Are you sure ???"
+    new:
+      listauthor: "List Authors"
+      dashboard: "Dashboard"
+      list: "List"
+      newauthor: "New Authors"
+    edit:
+      listauthor: "List Authors"
+      dashboard: "Dashboard"
+      list: "List"
+      editauthor: "Edit Authors"
+    show:
+      listauthor: "List Authors"
+      dashboard: "Dashboard"
+      list: "List"
+      showauthor: "Show Authors"
+      back: "Back"
+      edit: "Edit"
+      name: "Name:"
+      description: "Description:"
+      birthday: "Birthday:"
+      homeland: "Country:"
+    form:
+      name: "Name"
+      description: "Description"
+      birthday: "Birthday"
+      homeland: "Country"
+      inputname: "Input name"
+      inputdescription: "Input description"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      author-create: "Author was successfully created."
+    update:
+      author-update: "Author was successfully updated."
+    destroy:
+      author-destroy: "Author was successfully destroyed."
+      
+  books:
+    index:
+      listbook: "List Books"
+      dashboard: "Dashboard"
+      list: "List"
+      addnew: "New Books"
+      search-name: "Search by name ... "
+      search-category: "Select category"
+      search-author: "Select author"
+      search-staff: "Select staff"
+      author: "Author"
+      staff: "Staff"
+      image: "Image"
+      name: "Name"
+      categories: "Category"
+      description: "Description"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      listbook: "List Books"
+      dashboard: "Dashboard"
+      list: "List"
+      newbook: "New Books"
+    edit:
+      listbook: "List Books"
+      dashboard: "Dashboard"
+      list: "List"
+      editbook: "Edit Books"
+    show:
+      listbook: "List Books"
+      dashboard: "Dashboard"
+      list: "List"
+      showbook: "Show Books"
+      name: "Name:"
+      categories: "Category:"
+      description: "Description"
+      author: "Author:"
+      manufacturer: "Manufacturer:"
+      price: "Price:"
+      back: "Back"
+      edit: "Edit"
+    form:
+      name: "Name"
+      description: "Description"
+      author: "Author"
+      categories: "Category"
+      list-category: "List Category"
+      category-name: "Category Name"
+      category-action: "Delete"
+      category: "Please choose category ..."
+      manufacturer: "Manufacturer"
+      price: "Price"
+      image: "Image"
+      inputname: "Input name"
+      inputdescription: "Input description"
+      inputprice: "Input price"
+      image-help: "Accepted formats: gif, png, jpg. Max file size is 2Mb"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      book-create: "Book was successfully created."
+    update:
+      book-update: "Book was successfully updated."
+    destroy:
+      book-destroy: "Book was successfully destroyed."
+      
+  admin:
+    index:
+      dashboard: "Dashboard"
+      hello: "Welcome to, "
+      title: "Admin"
+    shared:
+      sidebar:
+        title: "Mains"
+        dashboard: "Dashboard"
+        list: "List"
+        listcategories: "List Categories"
+        listbooks: "List Books"
+        listauthors: "List Authors"
+        listmanufacturers: "List Manufacturers"
+        order: "Order"
+        comment: "Comment"
+        information: "Information"
+        informationcustomers: "List Customers"
+        informationstaffs: "List Staffs"
+      nav:
+        locale: "English"
+        elocale: "English"
+        vlocale: "Vietnamese"
+        profile: "My profile"
+        out: "Log out"
+        
+  categories:
+    index:
+      listcategories: "List Categories"
+      dashboard: "Dashboard"
+      list: "List"
+      addnew: "New Category"
+      search-name: "Search by name ... "
+      name: "Name"
+      description: "Description"
+      action: "Action"
+      show: "Show "
+      edit: "Edit"
+      destroy: "Destroy"
+    new:
+      newcategories: "New Categories"
+      listcategories: "List Categories"
+      list: "List"
+      dashboard: "Dashboard"
+    show:
+      showcategories: "Show Categories"
+      listcategories: "List Categories"
+      list: "List"
+      dashboard: "Dashboard"
+      name: "Name:"
+      description: "Description:"
+      back: "Back"
+      edit: "Edit"
+    edit:
+      editcategories: "Edit Categories"
+      listcategories: "List Categories"
+      list: "List"
+      dashboard: "Dashboard"
+    form:
+      name: "Name"
+      description: "Description"
+      inputname: "Input name"
+      inputdescription: "Input description"
+      back: "Back"
+      corfirm: "Confirm"
+    create:
+      category-create: "Category was successfully created."
+    update:
+      category-update: "Category was successfully updated."
+    destroy:
+      category-destroy: "Category was successfully destroyed."
+      
+  sessions:
+    new:
+      title: "Login"
+      category: "All Category"
+      findbook: "Find Book"
+      login: "Login to your account"
+      inputpassword: "Password"
+      loginbutton: "Log in"
+      newstaff: "New staff ? "
+      signup: "Sign up now!"
+    create:
+      login: "Login success."
+      login-error: "Email or password are not correct."
+  birthday-error: "can't be in the future"
+  will_paginate:
+    previous_label: "<i class='icon-arrow-left7'></i>"
+    next_label: "<i class='icon-arrow-right7'></i>"

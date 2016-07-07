@@ -1,0 +1,89 @@
+<% provide(:title, t('.showbook'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+			<div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.showbook')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.list'), books_path %></li>
+							<li><%= link_to t('.listbook') , books_path %></li>
+							<li><%= t('.showbook')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+				<div class="panel panel-flat">
+					<div class="panel-heading">
+						<h1 class="panel-title"><%= t('.showbook')%></h1>
+					</div>
+                    <div class="panel-body">
+						<div class="book-container">
+							<div class="book-image col-md-4 col-xs-12">
+								<%= image_tag @book.image_url.to_s, class: "list_image image" %>
+							</div>
+							<div class="book-details-container col-md-8 col-xs-12">
+								<div class="book-category">
+									<span><%= t('.categories')%></span>
+									<div class="book-inline">
+										<% @book.category.each do |category| %>
+											<% if category.nil? %>
+											<% else %>
+												<div class="book-category-details"><%= category.name %></div>
+											<% end %>
+										<% end %>
+									</div>
+								</div>
+								<div class="book-author">
+									<span><%= t('.author')%></span>
+									<% if @book.author_id.nil? %>
+									<% else %>
+										<%= @book.author.name %>
+									<% end %>
+								</div>
+								<div class="book-manufacturer">
+									<span><%= t('.manufacturer')%></span>
+									<% if @book.manufacturer_id.nil? %>
+									<% else %>
+										<%= @book.manufacturer.name %>
+									<% end %>
+								</div>
+								<div class="book-price">
+									<span><%= t('.price')%></span>
+									<%= number_to_currency(@book.price) %>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<div class="book-description">
+								<h2><%= t('.description')%></h2>
+								<p><%= @book.description %></p>
+							</div>
+						</div>
+						<div class="text-right">
+								<%= link_to t('.edit'), edit_book_path(@book), class:"custombutton" %>
+								<%= link_to t('.back'), books_path, class:"custombutton" %>
+						</div>
+                    </div>
+                </div>
+            </div>
+ </div>
+    </div>
+</div>
+<%= javascript_include_tag 'uniform.min.js' %>
+<%= javascript_include_tag 'form_layouts.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+
+<%= javascript_include_tag 'components_thumbnails.js' %>
+<%= javascript_include_tag 'fancybox.min.js' %>
+<%= javascript_include_tag 'switchery.min.js' %>

@@ -1,0 +1,176 @@
+<% provide(:title, t('.listbook'))%>
+<%= render 'admin/shared/nav' %>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+			<div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.listbook')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.list'), books_path %></li>
+							<li><%= t('.listbook')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+	<% flash.each do |message_type, message| %>
+					<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<% end %>
+<!-- Contextual classes -->
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+							<h1 class="panel-title"><%= t('.listbook')%></h1>
+							<div class="heading-elements">
+								<ul class="icons-list">
+                                    <li><%= link_to t('.addnew'), new_book_path, class:"custombutton"%></li>
+			                	</ul>
+		                	</div>
+						</div>
+						<!--Đã chỉnh sửa-->
+							<div class="filter-box">
+								<div class="row">
+									<div class="col-md-3">
+									  <div class="form-group search">
+										<%= form_tag(books_path, :method => "get", id: "search-form") do %>
+											<%= label_tag(:search, t('.name')) %></br>
+											 <div class="input-group">
+												<%= text_field_tag :search, params[:search], placeholder: t('.search-name') , class:"form-control"%>
+												<%= link_to "<i class='icon-search4'></i>".html_safe, "#", class:"input-group-addon keyword_search_button"%>
+											 </div>
+										<% end %>
+									  </div>
+								   </div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_category_books_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:id, t('.categories')) %></br>
+												<%= select_tag :id, options_from_collection_for_select(Category.all, "id", "name"), {:prompt => t('.search-category'), class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_author_books_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:id, t('.author')) %></br>
+												<%= select_tag :id, options_from_collection_for_select(Author.all, "id", "name"), {:prompt => t('.search-author'), class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<%= form_tag(search_staff_books_path, :method => "get", id: "search-form") do %>
+												<%= label_tag(:id, t('.staff')) %></br>
+												<%= select_tag :id, options_from_collection_for_select(Staff.all, "id", "name"), {:prompt => t('.search-staff'), class: 'select' } %>						
+											<% end %>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--Đã chỉnh sửa-->	
+							<table class="table datatable-basic">
+			                    <thead>
+			                        <tr>
+										<th><%= t('.image')%></th>
+                                        <th><%= t('.name')%></th>
+                                        <th><%= t('.description')%></th>
+										<th><%= t('.categories')%></th>
+										<th><%= t('.author')%></th>
+                                        <th><%= t('.staff')%></th>
+                                        <th class="text-center"><%= t('.action')%></th>
+                                    </tr>
+			                    </thead>
+			                    <tbody>
+			                        <% @books.each do |book| %>
+                                        <tr>
+											<% if current_staff.admin %>
+												<td><%= link_to (image_tag book.image_url.to_s), edit_book_path(book), class: 'list_image' %></td> <!--them .to_s vao sau book.image_url-->
+												<td><%= link_to book.name, edit_book_path(book) %></td>
+											<% elsif current_staff.id == book.staff_id %>
+												<td><%= link_to (image_tag book.image_url.to_s), edit_book_path(book), class: 'list_image' %></td> <!--them .to_s vao sau book.image_url-->
+												<td><%= link_to book.name, edit_book_path(book) %></td>
+											<% else %>
+												<td><%= image_tag book.image_url.to_s, class: 'list_image_normal' %></td> <!--them .to_s vao sau book.image_url-->
+												<td><%= book.name %></td>
+											<% end %>
+                                          <td><%= book.description[0,200] %>...</td>
+											<td>
+												<% @stt = 0 %>
+												<% book.category.each do |category| %>
+													<% if category.nil? %>
+													<% else %>
+														<% if @stt % 2 == 0 %>
+															<div class="odd-category text-category"><%= category.name %></div>
+														<% else %>
+															<div class="even-category text-category"><%= category.name %></div>
+														<% end %>
+														<% @stt += 1 %>
+													<% end %>
+												<% end %>
+											</td>
+											<% if book.author_id.nil? %>
+												<td></td>
+											<% else %>
+												<td><%= book.author.name %></td>
+											<% end %>
+											<% if book.staff_id.nil? %>
+												<td></td>
+											<% else %>
+												<td><%= book.staff.name %></td>
+											<% end %>
+                                          <td class="text-center">
+											<% if current_staff.admin %>
+                                                <ul class="icons-list">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="icon-menu9"></i>
+                                                         </a>
+                                                         <ul class="dropdown-menu dropdown-menu-right">
+                                                           <li><%= link_to t('.show'), book %></li>
+                                                           <li><%= link_to t('.edit'), edit_book_path(book) %></li>
+                                                           <li><%= link_to t('.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                                                         </ul>
+													</li>
+                                                </ul>
+											<% elsif current_staff.id == book.staff_id %>
+												<ul class="icons-list">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <i class="icon-menu9"></i>
+                                                         </a>
+                                                          <ul class="dropdown-menu dropdown-menu-right">
+                                                           <li><%= link_to t('.show'), book %></li>
+                                                           <li><%= link_to t('.edit'), edit_book_path(book) %></li>
+                                                           <li><%= link_to t('.destroy'), book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                                                         </ul>
+													</li>
+                                                </ul>
+											<% else %>
+											<% end %>
+                                            </td>
+                                        </tr>
+                                    <% end %>
+			                    </tbody>
+			                </table>
+					</div>
+					<!-- /contextual classes -->
+        </div>
+      </div>
+    </div>
+</div>
+<%= javascript_include_tag 'custom-delete.js' %>
+<%= javascript_include_tag 'datatables.min.js' %>
+<%= javascript_include_tag 'datatables_basic_books.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+<%= javascript_include_tag 'bootbox.min.js' %>
+<%= javascript_include_tag 'sweet_alert.min.js' %>
+<%= javascript_include_tag 'components_modals.js' %>

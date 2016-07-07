@@ -1,0 +1,115 @@
+<div class="mainhome">
+    <div id="header">
+        <!-- Main navbar -->
+        <div class="navbar navbar-inverse navbar-f">
+            <%= render 'static_page/shared/nav' %>
+        </div>
+        <!-- /main navbar -->
+    </div>
+    <div id="mainbody" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4  col-md-3 sidebar-f">
+                <%= render 'static_page/shared/sidebar' %>
+            </div>
+            <div class="col-xs-12 col-sm-8  col-md-9 content">
+                <% flash.each do |message_type, message| %>
+                    <div class="alert alert-<%= message_type %>">
+                        <%= message %>
+                    </div>
+                <% end %>
+                <div class="book-details">
+					<div class="back-to-category">
+						<% @book.category.each do |category| %>
+							<%= link_to t('.back') + category.name, category_list_path(category), class:"btn btn-primary" %>
+						<% end %>
+					</div>
+					<h1><%= @book.name %></h1>
+					<div class="book-container">
+						<div class="book-image col-md-4 col-xs-12">
+							<%= image_tag @book.image_url.to_s, class: "list_image image" %>
+						</div>
+						<div class="book-details-container col-md-8 col-xs-12">
+							<div class="book-category">
+								<span><%= t('.category')%></span>
+								<div class="book-inline">
+									<% @book.category.each do |category| %>
+										<% if category.nil? %>
+										<% else %>
+											<div class="book-category-details"><%= category.name %></div>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+							<div class="book-author">
+								<span><%= t('.author')%></span>
+								<% if @book.author_id.nil? %>
+								<% else %>
+									<%= @book.author.name %>
+								<% end %>
+							</div>
+							<div class="book-manufacturer">
+								<span><%= t('.manufacturer')%></span>
+								<% if @book.manufacturer_id.nil? %>
+								<% else %>
+									<%= @book.manufacturer.name %>
+								<% end %>
+							</div>
+							<div class="book-prices">
+								<span><%= t('.sale')%></span>
+								<%= number_to_currency(@book.price) %>
+							</div>
+							<div class="book-add-button">
+								<%= button_to t('.addcart'), line_items_path(book_id: @book), remote: true, class:"button-card" %>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="book-description">
+							<h2><%= t('.description')%></h2>
+							<p><%= @book.description %></p>
+						</div>
+						<% if @book.comment.empty? %>
+						<% else %>
+							<div class="book-comment">
+								<h2><%= t('.comments')%></h2>
+								<div class="comment-list">
+								<% @book.comment.each do |comment| %>
+									<div class="box">
+										# <span class="comment-name"><%= comment.name %></span><span class="comment-date"><%= comment.created_at.strftime("%H:%M-%d-%m-%Y") %></span>
+										<div class="comment-content"><%= comment.comment %></div>
+									</div>
+								<% end %>
+								</div>
+							</div>
+						<% end %>
+						<div class="book-add-comment">
+							<h2><%= t('.addcomments')%></h2>
+							<div class="col-md-6 col-xs-12">
+								<%= form_for(@comment, url: comment_book_path) do |f| %>
+									<p class="required">
+										<%= f.label :name %>
+										<% if logged_in? %>
+											<%= f.text_field :name, value: current_staff.name %>
+										<% else %>
+											<%= f.text_field :name %>
+										<% end %>
+									</p>
+									<p>
+										<%= f.text_area :comment %>
+									</p>
+									<%= f.hidden_field :book_id, value: @book.id %>
+									<% if logged_in? %>
+										<%= f.hidden_field :staff_id,value: current_staff.id %>
+									<% else %>
+									<% end %>
+									<div class="button-comment">
+										<%= f.submit t('.send'), class:"button-comment-send"%>
+									</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

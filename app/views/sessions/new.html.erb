@@ -1,0 +1,89 @@
+<% provide(:title, t('.title')) %>
+<div class="mainhome">
+    <div id="header">
+        <!-- Main navbar -->
+        <div class="navbar navbar-inverse navbar-f">
+			<%= render 'static_page/shared/nav' %>
+        </div>
+        <!-- /main navbar -->
+    </div>
+    <div id="mainbody" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4  col-md-3 sidebar-f">
+				<div id="list-category">
+					<h3><%= t('.category') %></h3>
+					<div class="content-category">
+						<ul>
+						<% Category.all.each do |category| %>
+							<li><%= active_link_to category.name, category_list_path(category) %></li>
+						<% end %>
+						</ul>
+					</div>
+				</div>
+				<div id="find-book">
+					<h3><%= t('.findbook') %></h3>
+					<div class="content-find-book">
+						<%= form_tag find_path do %>
+							<%= text_field_tag :book, '', :class => "find-name" %>
+						<% end %>
+					</div>
+				</div>
+            </div>
+            <div class="col-xs-12 col-sm-8  col-md-9 content">
+                <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>">
+                    <%= message %>
+                </div>
+				<% end %>
+				<!-- Page container -->
+				<div class="page-container login-container">
+					<!-- Page content -->
+					<div class="page-content">
+						<!-- Main content -->
+						<div class="content-wrapper">
+							<!-- Content area -->
+							<div class="content">
+								<!-- Simple login form -->
+								<%= form_for (:session) do |f| %>
+									<div class="panel panel-body login-form">
+										<div class="text-center">
+											<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+											<h3 class="content-group"><%= t('.login') %></h3>
+										</div>
+										
+										<div class="form-group has-feedback has-feedback-left">
+											<%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+											<div class="form-control-feedback">
+												<i class="icon-user text-muted"></i>
+											</div>
+										</div>
+										
+										<div class="form-group has-feedback has-feedback-left">
+											<%= f.password_field :password, class: "form-control", placeholder: t('.inputpassword') %>
+											<div class="form-control-feedback">
+												<i class="icon-lock2 text-muted"></i>
+											</div>
+										</div>
+			
+										<div class="form-group">
+											<%= f.submit t('.loginbutton'), class: "custombutton btn-block" %>
+										</div>
+
+										<div class="text-center">
+											<p><%= t('.newstaff') %><%= link_to t('.signup'), resign_path %></p>
+										</div>
+									</div>
+								<% end %>
+								<!-- /simple login form -->
+							</div>
+							<!-- /content area -->
+						</div>
+						<!-- /main content -->
+					</div>
+					<!-- /page content -->
+				</div>
+				<!-- /page container -->
+            </div>
+        </div>
+    </div>
+</div>

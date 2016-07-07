@@ -1,0 +1,9 @@
+<% if line_item == @current_item %>
+    <tr id="current_item">
+<% else %>
+    <tr>
+<% end %>
+        <td><%= line_item.book.name %></td>
+        <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+        <td class="text-center"><%= link_to "X", controller: "custom", action: "delete_book_lineitem", id: line_item.book.id %></td>
+    </tr>

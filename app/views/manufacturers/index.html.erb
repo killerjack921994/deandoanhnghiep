@@ -1,0 +1,115 @@
+<% provide(:title, t('.listmanufacturer'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+            <div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.listmanufacturer')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.list'), manufacturers_path %></li>
+							<li><%= t('.listmanufacturer')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+	<% flash.each do |message_type, message| %>
+					<div class="alert alert-<%= message_type %>"><%= message %></div>
+				<% end %>
+<!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h1 class="panel-title"><%= t('.listmanufacturer')%></h1>
+            <div class="heading-elements">
+                <ul class="icons-list">
+					<% if current_staff.admin %>
+						<li><%= link_to t('.addnew'), new_manufacturer_path, class:"custombutton" %></li>
+					<% else %>
+					<% end %>
+                </ul>
+            </div>
+        </div>
+
+        
+<!--Đã chỉnh sửa-->
+							<div class="filter-box">
+								<div class="row">
+									<div class="col-md-3">
+									  <div class="form-group search">
+										<%= form_tag(manufacturers_path, :method => "get", id: "search-form") do %>
+											<%= label_tag(:search, t('.name')) %></br>
+											 <div class="input-group">
+												<%= text_field_tag :search, params[:search], placeholder: t('.search-name') , class:"form-control"%>
+												<%= link_to "<i class='icon-search4'></i>".html_safe, "#", class:"input-group-addon keyword_search_button"%>
+											 </div>
+										<% end %>
+									  </div>
+								   </div>
+								</div>
+									</div>
+							<!--Đã chỉnh sửa-->	
+        <table class="table datatable-basic table-hover">
+            <thead>
+                <tr>
+                     <th><%= t('.name')%></th>
+                    <th><%= t('.address')%></th>
+                    <th><%= t('.phone')%></th>
+                    <th><%= t('.fax')%></th>
+                    <th class="text-center"><%= t('.action')%></th>
+                </tr>
+            </thead>
+            <tbody>
+                  <% @manufacturers.each do |manufacturer| %>
+                    <tr>
+						<% if current_staff.admin %>
+							<td><%= link_to manufacturer.name, edit_manufacturer_path(manufacturer) %></td>
+						<% else %>
+							<td><%= manufacturer.name %></td>
+						<% end %>
+                        <td><%= manufacturer.address %></td>
+                        <td><%= manufacturer.phone %></td>
+                        <td><%= manufacturer.fax %></td>
+                      <td class="text-center">
+						<% if current_staff.admin %>
+							<ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><%= link_to t('.edit'), edit_manufacturer_path(manufacturer) %></li>
+                                        <li><%= link_to t('.destroy'), manufacturer, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                                    </ul>
+                                </li>
+                            </ul>
+						<% else %>
+						<% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <!-- /basic datatable -->
+</div>
+        </div>
+    </div>
+</div>
+<%= javascript_include_tag 'datatables.min.js' %>
+<%= javascript_include_tag 'datatables_basic_manufacturers.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
+<%= javascript_include_tag 'bootbox.min.js' %>
+<%= javascript_include_tag 'sweet_alert.min.js' %>
+<%= javascript_include_tag 'components_modals.js' %>
+<%= javascript_include_tag 'custom-delete.js' %>

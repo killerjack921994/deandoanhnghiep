@@ -1,0 +1,63 @@
+<div class="mainhome">
+    <div id="header">
+        <!-- Main navbar -->
+        <div class="navbar navbar-inverse navbar-f">
+            <%= render 'static_page/shared/nav' %>
+        </div>
+        <!-- /main navbar -->
+    </div>
+    <div id="mainbody" class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4  col-md-3 sidebar-f">
+                <%= render 'static_page/shared/sidebar' %>
+            </div>
+            <div class="col-xs-12 col-sm-8  col-md-9 content">
+                <% flash.each do |message_type, message| %>
+                    <div class="alert alert-<%= message_type %>">
+                        <%= message %>
+                    </div>
+                <% end %>
+                <div class="category-infor">
+                    <h1 class="category_title">
+                        <span><%= @category.name %></span>
+                    </h1>
+                    <div class="category_description">
+                        <p><%= @category.description %></p>
+                    </div>
+                </div>
+                <div class="book-show">
+                    <div class="clearfix"></div>
+                    <% @stt = 1 %>
+                    <% @book.each do |book| %>
+                        <div class="book col-md-4 col-xs-12">
+                            <div class="space">
+                                <div class="book-image">
+                                    <%= link_to (image_tag book.image_url.to_s, class: "book-category-image"), book_details_path(book) %>
+                                    <div class="show-des">
+                                        <div class="book-detail"><%= link_to t('.bookdetails'), book_details_path(book) %></div>
+                                    </div>
+                                </div>
+                                <div class="book-description">
+                                    <h2><%= link_to book.name, book_details_path(book) %></h2>
+                                    <div class="book-price">
+                                        <span class="price-des"><%= t('.sale')%></span>
+                                        <span class="price-detail"><%= number_to_currency(book.price) %></span>
+                                    </div>
+                                    <%= button_to t('.addcart'), line_items_path(book_id: book), remote: true %>
+                                </div>
+                            </div>
+                        </div>
+                        <% @stt += 1 %>
+                        <% if @stt == 4 %>
+                            <div class="clearfix"></div>
+                            <% @stt = 1 %>
+                        <% else %>
+                        <% end %>
+                    <% end %>
+                    <div class="clearfix"></div>
+                    <div class="text-center"><%= will_paginate @book %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

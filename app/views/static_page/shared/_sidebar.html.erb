@@ -1,0 +1,23 @@
+<div id="cart">
+    <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+        <%= render @cart %>
+    <% end %>
+</div>
+<div id="list-category">
+	<h3><%= t('.allcategory')%></h3>
+	<div class="content-category">
+		<ul>
+		<% Category.all.each do |category| %>
+			<li><%= active_link_to category.name, category_list_path(category) %></li>
+		<% end %>
+		</ul>
+	</div>
+</div>
+<div id="find-book">
+	<h3><%= t('.findbook')%></h3>
+	<div class="content-find-book">
+		<%= form_tag find_path do %>
+			<%= text_field_tag :book, '', :class => "find-name" %>
+		<% end %>
+	</div>
+</div>

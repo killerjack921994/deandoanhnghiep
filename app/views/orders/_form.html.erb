@@ -1,0 +1,70 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div class="error_explanation">
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+       <div class="alert alert-warning alert-bordered">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+          <span class="text-semibold">Warning! </span><%= message %>
+        </div>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+		<% if @order.name.nil? %>
+			<%= f.hidden_field :name, class:"form-control", value: SecureRandom.hex(4) %>
+		<% else %>
+			<%= f.hidden_field :name, class:"form-control", value: @order.name %>
+		<% end %>
+  </div>
+  <% if @order.book.empty? %>
+  <% else %>
+  <div class="form-group required">
+    <label><%= t('.list-book') %></label>
+		<div class="row border-category">
+      <div class="col-md-9 col-xs-9"><%= t(".book-name") %></div>
+			<div class="col-md-2 col-xs-2 text-center border-left"><%= t(".book-price") %></div>
+      <div class="col-md-1 col-xs-1 text-center border-left"><%=t(".book-action") %></div>
+    </div>
+		<% @stt = @order.book.count %>
+    <% @order.book.each do |book| %>
+        <div class="row border-category">
+            <div class="col-md-9 col-xs-9"><%= book.name %></div>
+						<div class="col-md-2 col-xs-2 text-center border-left"><%= number_to_currency(book.price) %></div>
+						<% if @stt == 1 %>
+						<% else %>
+							<div class="col-md-1 col-xs-1 text-center border-left"><%= link_to "x", controller: "custom", action: "delete_order_book", id: @order.id, id_book: book.id %></div>
+						<% end %>
+				</div>
+    <% end %>
+    <div class="border-bottom"></div>
+    <div class="clearfix"></div>
+  </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :book, t('.books') %><br>
+    <%= f.select :book, Book.all.collect { |book| [book.name, book.id] }, {}, { multiple: true , class: 'select', data: {placeholder: t('.book')}}  %>
+  </div>
+  <div class="field">
+    <%= f.label :method, t('.method') %><br>
+    <%= f.select :method, options_for_select(["Select One", "Borrow", "Buy"], :disabled => ["Select One"]), {}, {:class => 'bootstrap-select'} %>
+  </div>
+  <div class="field">
+		<%= f.label :payment, t('.payment') %><br>
+		<%= f.select :payment, options_for_select(["Select One", "Card", "Cash"], :disabled => ["Select One"]), {}, {:class => 'bootstrap-select'} %>
+  </div>
+	<div class="field">
+		<%= f.label :process, t('.process') %><br>
+		<%= f.select :process, options_for_select(["Select One", "Pending", "Complete"], :disabled => ["Select One"]), {}, {:class => 'bootstrap-select'} %>
+  </div>
+	<div class="field">
+    <%= f.label :staff_id, t('.staff') %><br>
+    <%= f.select :staff_id, Staff.all.collect { |staf| [staf.name, staf.id] }, {}, { class: 'bootstrap-select' } %>
+  </div>
+  <div class="actions text-right">
+    <%= f.submit nil, :class => 'custombutton' %>
+    <%= link_to  t('.back'), orders_path, class:"custombutton"  %>
+  </div>
+<% end %>

@@ -1,0 +1,38 @@
+<h3><%= t('.youcart')%></h3>
+<table class="table-f datatable-basic table-hover">
+    <thead>
+        <tr>
+            <td class="cart-n"><%= t('.name')%></td>
+            <td class="cart-p"><%= t('.price')%></td>
+            <td class="cart-a"><%= t('.action')%></td>
+        </tr>
+    </thead>
+    <%= render(cart.line_items) %>
+    <tr class="total_line">
+        <td><%= t('.total')%></td>
+        <td></td>
+        <td class="total_cell"><%= number_to_currency(cart.total_price) %></td>
+    </tr>
+</table>
+<%= button_to t('.checkout'), order_f_path, method: :get, class: "custombutton" %>
+<!-- Button trigger modal -->
+<%= link_to t('.empty'), "#", class: "custombutton", data: { toggle: "modal", target: "#myModal" } %>
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t(".title") %></h4>
+      </div>
+      <div class="modal-body"><%= t(".content") %></div>
+      <div class="modal-footer">
+        <%= link_to t('.close'), "#", class: "custombutton", data: { dismiss: "modal" } %>
+        <%= button_to t('.empty'), cart , method: :delete, class: "custombutton" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'datatables.min.js' %>
+<%= javascript_include_tag 'bootbox.min.js' %>
+<%= javascript_include_tag 'components_modals.js' %>

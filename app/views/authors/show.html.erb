@@ -1,0 +1,63 @@
+<% provide(:title, t('.showauthor'))%>
+<%= render 'admin/shared/nav'%>
+<div class="page-container">
+    <div class="page-content">
+        <div class="sidebar sidebar-main">
+            <%= render 'admin/shared/sidebar'%>
+        </div>
+        <div class="content-wrapper">
+			<div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title">
+                        <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><%= t('.showauthor')%></span></h4>
+                    </div>
+                </div>
+                <div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li>
+                                <%= link_to "<i class='icon-home2 position-left'></i>".html_safe + t('.dashboard'), admin_path %>
+                            </li>
+							<li><%= link_to t('.list'), authors_path %></li>
+							<li><%= link_to t('.listauthor') , authors_path %></li>
+							<li><%= t('.showauthor')%></li>
+						</ul>
+					</div>
+            </div>
+<div class="content">
+				<div class="panel panel-flat">
+					<div class="panel-heading">
+						<h1 class="panel-title"><%= t('.showauthor')%></h1>
+					</div>
+                    <div class="panel-body">
+                        <p>
+                            <strong><%= t('.name')%></strong>
+                            <%= @author.name %>
+                          </p>
+                          
+                          <p>
+                            <strong><%= t('.birthday')%></strong>
+                            <%= @author.birthday.strftime('%d/%m/%Y') %>
+                          </p>
+                          
+                          <p>
+                            <strong><%= t('.description')%></strong>
+                            <%= @author.description %>
+                          </p>
+                          
+                          <p>
+                            <strong><%= t('.homeland')%></strong>
+                            <%= @author.homeland %>
+                          </p>
+                        <div class="text-right">
+                            <%= link_to t('.edit'), edit_author_path(@author), class: "custombutton" %>
+                            <%= link_to t('.back'), authors_path, class: "custombutton" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+    </div>
+</div>
+<%= javascript_include_tag 'uniform.min.js' %>
+<%= javascript_include_tag 'form_layouts.js' %>
+<%= javascript_include_tag 'select2.min.js' %>
