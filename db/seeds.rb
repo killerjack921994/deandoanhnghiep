@@ -95,7 +95,7 @@ Manufacturer.create!([
   {name: "Shueisha", address: "Chiyoda, Tokyo, Japan", phone: "12321321", fax: "2313213"}
 ])
 Staff.create!([
-  {name: "admin", birthday: "2016-06-22", gender: "Nam", phone: "123456789", address: "admin 123", email: "admin@example.com", user: "admin", password_digest: "$2a$10$JTiYpwfo/o34fZJ2/v66FeTlx9C78oQhniFrjZ72h1pA6Tk/b/AZi", admin: true},
+  {name: "admin", birthday: "2016-06-22", gender: "Nam", phone: "123456789", address: "admin 123", email: "admin@example.com", user: "admin", password_digest: "$2a$10$cwQl7biBcFVv3zydfmwIz./nqYYhpjzhw.PeZ6hTiwmJlYqPp2AKC", admin: true},
   {name: "le van tan", birthday: "2016-06-22", gender: "Nam", phone: "123231232132", address: "asdasd123123", email: "levantan@example.com", user: "levantan", password_digest: "$2a$10$svBa3oS3x7zUAuv2Ljn4nuYtnxT7pdz8ILWrq9iFqJTxY36Ozinae", admin: false},
   {name: "leminhsang", birthday: "2016-06-21", gender: "Nam", phone: "123213213213", address: "asda123213", email: "leminhsang@gmail.com", user: "leminhsang", password_digest: "$2a$10$yIBF1UBGbukumqyuF48CqOMSbxwoUk0Gpnr1yaPJk5YXEB78q3gT2", admin: false}
 ])
